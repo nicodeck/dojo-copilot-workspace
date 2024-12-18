@@ -10,6 +10,7 @@ import { ProgramListWithTitle } from '../modules/program/view/ProgramListWithTit
 import { Button } from '../design-system/components/Button';
 import { useState } from 'react';
 import { SubtitlesModal } from '../components/modals/SubtitlesModal';
+import { useSubtitlesContext } from '../components/SubtitlesContext';
 
 export const ProgramDetail = ({
   route,
@@ -17,7 +18,7 @@ export const ProgramDetail = ({
   route: RouteProp<RootStackParamList, 'ProgramDetail'>;
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [subtitles, setSubtitles] = useState('No');
+  const { subtitles } = useSubtitlesContext();
   const { programInfo } = route.params;
 
   return (
@@ -53,7 +54,6 @@ export const ProgramDetail = ({
       <SubtitlesModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        setSubtitles={setSubtitles}
       />
     </Page>
   );
